@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+         
+        h1{text-align: center;
+        color: blue;}
+        hr{border-width: 5px;
+        border-color: rgb(232, 6, 6);}
+        p{text-align: center;
+        font-size: 20px;}
+        body {
+            background-color: rgb(198, 246, 125);
+        }
+        #display{margin-left: 20%;}
+        img{display: block;
+            margin-left: auto;
+            margin-right: auto;}
+    </style>
+</head>
+<body>
+    <br>
+    {% load static %} <img src="{% static "1marakpmb-merah.png" %}" alt="home"  width="80%" height="150px"/>
+    <br><br>
+    <hr><hr>
+    <br><br><br>
+    <h1>USER FEEDBACK</h1>
+    <br>
+    <div id="display">
+        <form  action="u_feedback" method="post">
+            {% csrf_token %}
+                Name: <input name="name" type="text">
+                <br><br>
+                Text: <input name="text" type="text" style="width: 200px; height: 100px;">
+                <br><br>
+                <input type="submit" value="SAVE">
+        </form>
+        <br><br>
+        Feedback
+        <br><br>
+        {% for data in allfeedback %}
+            
+        <input type="text" value="{{data.text}}"  style="width: 500px; height: 100px;"> <br>
+            Feedback by: {{data.name}}
+            <br><br>
+        {% endfor %}
+    </div>
+</body>
+</html>
